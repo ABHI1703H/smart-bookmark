@@ -1,40 +1,154 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
+## Smart Bookmark App
 
-## Getting Started
+A minimal, production-ready bookmark manager built with Next.js App Router and Supabase.
 
-First, run the development server:
+# Live Demo
 
-```bash
+Vercel URL:
+https://your-deployment-url.vercel.app
+
+## Tech Stack
+
+Next.js 14 (App Router)
+
+Supabase (Authentication, Database, Realtime)
+
+Tailwind CSS
+
+Vercel (Deployment)
+
+## Features
+
+Google OAuth authentication (no email/password)
+
+Private bookmarks per user (Row Level Security enabled)
+
+Add bookmark (title + URL)
+
+Delete bookmark
+
+Real-time sync across multiple tabs
+
+Protected dashboard route
+
+Clean responsive UI
+
+## Architecture Overview
+Authentication
+
+Handled via Supabase Google OAuth provider.
+
+Database
+
+PostgreSQL hosted on Supabase.
+
+Bookmarks schema:
+
+id (UUID)
+
+user_id (UUID, foreign key to auth.users)
+
+title (text)
+
+url (text)
+
+created_at (timestamp)
+
+Security
+
+Row Level Security (RLS) policies ensure:
+
+Users can only view their own bookmarks
+
+Users can only insert their own bookmarks
+
+Users can only delete their own bookmarks
+
+Realtime
+
+Supabase Realtime subscription listens for changes in the bookmarks table filtered by user_id.
+
+## Local Setup
+
+# Clone repository:
+
+git clone <your-repo-url> // here youu can add your repo i have added mine "https://github.com/ABHI1703H/smart-bookmark.git"
+cd smart-bookmark-app
+
+
+# Install dependencies:
+
+npm install
+
+
+# Create .env.local file:
+
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+
+# Run development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Open:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+## Supabase Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Enable Google provider under Authentication → Providers.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add redirect URL:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+https://your-project-id.supabase.co/auth/v1/callback
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Enable Row Level Security on bookmarks table.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# smart-bookmark
->>>>>>> 921d71588f837707943ab50a998282089cecc25f
+Add SELECT, INSERT, DELETE policies based on auth.uid().
+
+## Deployment
+
+Push repository to GitHub.
+
+Import project into Vercel.
+
+Add environment variables in Vercel dashboard:
+
+NEXT_PUBLIC_SUPABASE_URL
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+Add Vercel domain to Supabase redirect URLs.
+
+## Challenges Faced
+
+Implementing strict RLS policies to enforce data isolation
+
+Filtering realtime updates per user
+
+Handling OAuth redirect configuration between Google, Supabase, and Vercel
+
+## Notes
+
+This project uses Next.js App Router (not Pages Router) and Supabase Realtime to ensure instant updates without page refresh.
+
+After replacing:
+
+git add README.md
+git commit -m "fix: resolved readme merge conflict and updated project documentation"
+
+
+This now looks clean, structured, and professional.
+
+If you want, I can also:
+
+Help you write strong commit messages
+
+Review your folder structure
+
+Improve your UI so it stands out in screening
+
+Tell me your current progress.
